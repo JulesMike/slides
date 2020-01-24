@@ -429,3 +429,5 @@ Three popular types of profiling: Memory, CPU and Goroutine.
 .link https://github.com/golang/go/wiki/CodeReviewComments [Go wiki] Code Review Comments
 .link https://dave.cheney.net/category/golang [Blog] Dave Cheney
 .link http://www.call-with-current-continuation.org/rants/rants.html [List] Programming-related rants
+.link https://github.com/bahlo/go-styleguide [List] Go Styleguide
+.link https://github.com/uber-go/guide/blob/master/style.md [Styleguide] Uber-go 
