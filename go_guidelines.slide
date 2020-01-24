@@ -1,0 +1,431 @@
+Go Guidelines
+Jan 22, 2020
+
+Jules Giovanni (mike)
+LSL Digital
+gio@mikeal.dev
+https://mikeal.dev
+
+* 
+
+.background https://miro.medium.com/max/3840/1*mjOnC1jADpDPB242xVvGrw.png _ 550
+
+* Roadmap
+
+- Why do we need le Guidelines?
+- What are 'em?
+- Toolings
+- References
+
+
+* Why do we need le Guidelines?
+
+.image https://images.squarespace-cdn.com/content/v1/54ff8369e4b03f6b10647624/1525893301196-85DU9KGWOUZOY4ZUEUEW/ke17ZwdGBToddI8pDm48kLN33MCaMri5_kQBC52hVftZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxl4eJ1_yh17i5W-8EZepd7i6cx6vuNmDP_l-samD14oL8qDRtH4rMNEwHpjJbhHkA/Barbosa-morelikeguidelines.gif?format=500w _ 800
+
+* Software engineering v/s Programming
+
+    Software engineering is what happens to programming when you add time and other programmers.
+    
+    –Russ Cox, GopherCon Singapore 2018
+
+What is Programming?
+
+    Programming is the process of taking an algorithm and encoding it into a notation, 
+    a programming language, so that it can be executed by a computer.
+
+    -https://runestone.academy/runestone/books/published/pythonds/Introduction/WhatIsProgramming.html
+
+Software engineering = `Programming`  *x*  `programmers`  *x*  `time`
+
+However, the more programmers added does not mean the better...
+
+* Contention
+
+Programmers come from various programming backgrounds and often, when teamed up on a similiar project using a specific programming language, contentions arise.
+
+- Aiming at those sweet style points (e.g semicolon/curly brace/oneliner wars)
+- How do I name thee? (e.g variable/function/method/type/package/file/test naming)
+- We need to go deeper! (e.g nesting, recursion)
+- Now you see me, now you don't! (e.g public vs private) 
+- Pirate everything! (e.g licensing)
+
+* Code structure
+How do we structure this whole mess?
+Abstract Factory? Builder? Factory Method? Object Pool? Prototype? Singleton? Adapter? Composite? Decorator? Hexagonal?
+
+.image https://www.thoughtco.com/thmb/Mh71Tl5tMZ8riL_iBhb8DClx638=/3644x2426/filters:no_upscale():max_bytes(150000):strip_icc()/silly-168809566-crop-587c4d283df78c17b6f89712.jpg _ 600
+
+* Code Quality
+
+    Complexity is anything that makes software hard to understand or to modify.
+
+    –John Ousterhout, A Philosophy of Software Design
+
+.image https://qph.fs.quoracdn.net/main-qimg-da6a827b2b8badd938d836b232968d45.webp _ 550
+
+* Summary, no guideline = $this.emage
+
+.image http://invisiblebread.com/comics/2017-01-04-bossing.png
+
+* 
+
+.background https://www.coinwire.com/wp-content/uploads/shutterstock_498302194-1000x480.jpg
+
+* Disclaimers:
+
+- No specific order (even this list)
+- Not final (very much a WIP)
+- "Toute catégorie confondue"
+- Some guidelines are taken care of at language-design level
+- Mere presentation: a proper compilation incoming (not everything fits in slides)
+
+* Clarity ≠ Readability
+
+Readability:
+
+- nit picking about line length and variable names. 
+- holy wars about brace position. 
+- the hand to hand combat of style guides and code review guidelines that regulate the use of whitespace.
+
+Clarity:
+
+- the property of the code on the page. 
+- concerned with what the code is doing, not just how it is written down.
+
+    The most important skill for a programmer is the ability to effectively communicate ideas.
+
+    –Gastón Jorquera
+
+* Simplicity
+
+“I can’t understand this code”
+
+    The ability to simplify means to eliminate the unnecessary so that the necessary may speak
+
+    –Hans Hofmann
+
+Too often, we add noise to our codebase.
+
+Complexity:
+
+- Unreliable software. 
+- Unmaintainable software.
+- Kills software projects. 
+
+Clarity and simplicity are interlocking forces that lead to maintainable software.
+
+* Productivity
+
+Go programmers realise that code is written to be read and so place the act of reading code above the act of writing it.
+
+    Design is the art of arranging code to work today, and be changeable forever.
+
+    –Sandi Metz
+
+- Go programmers don’t spend days debugging inscrutable compile errors. 
+- They don’t waste days with complicated build scripts or deploying code to production. 
+- And most importantly they don’t spend their time trying to understand what their coworker wrote.
+
+Go was designed so programmers feel as *productive* as their counterparts working in dynamic languages without the maintenance issues inherent in those languages.
+
+* Go fmt yourself!
+
+Every single Go source file must be formatted with `Gofmt`.
+
+    Gofmt's style is no one's favorite, yet gofmt is everyone's favorite.
+
+    -Rob Pike, Gopherfest, November 2015
+
+Moreover, code should be visually inspected.
+
+- Go goes so far as to enforce, via tooling and custom, that all code be formatted in a specific style. This removes the friction of learning a project specific dialect and helps spot mistakes because they *just* *look* *incorrect*.
+
+* Go vet
+
+A happy `go vet` is a happy developer!
+
+    asmdecl      report mismatches between assembly files and Go declarations
+    assign       check for useless assignments
+    atomic       check for common mistakes using the sync/atomic package
+    bools        check for common mistakes involving boolean operators
+    buildtag     check that +build tags are well-formed and correctly located
+    cgocall      detect some violations of the cgo pointer passing rules
+    composites   check for unkeyed composite literals
+    copylocks    check for locks erroneously passed by value
+    httpresponse check for mistakes using HTTP responses
+    loopclosure  check references to loop variables from within nested functions
+    lostcancel   check cancel func returned by context.WithCancel is called
+    nilfunc      check for useless comparisons between functions and nil
+    printf       check consistency of Printf format strings and arguments
+    shift        check for shifts that equal or exceed the width of the integer
+    stdmethods   check signature of methods of well-known interfaces
+    structtag    check that struct field tags conform to reflect.StructTag.Get
+    tests        check for common mistaken usages of tests and examples
+    unmarshal    report passing non-pointer or non-interface values to unmarshal
+    unreachable  check for unreachable code
+    unsafeptr    check for invalid conversions of uintptr to unsafe.Pointer
+    unusedresult check for unused results of calls to some functions
+
+* Comment
+
+- Comment should be written in full sentences even if it feels redundant. 
+    // Request represents a request to run a command.
+    type Request struct { ...
+
+- Space should be inserted after `//`
+    // BAD
+    //Request ...
+ 
+    // GOOD
+    // Request ...
+
+- Comment tags
+    // List of comment tags
+    // TODO, FIXME, BUG, HACK, INFO, DONE
+
+    // Comment tags should be authored properly
+    // HACK(mike): This is fugly and had to be done in a rush
+
+
+At the end of the day, source code comments serves as documentation on `godoc`.
+
+* Package names
+
+- Short, concise & evocative
+    package bytes // import "bytes"
+
+    package base64 // import "encoding/base64" NOT "encoding_base64 or "encodingBase64"
+
+    package http // import "net/http"
+
+- Do not stutter
+    package xyz
+
+    // Bad
+    func NewXYZ(){ ... }
+ 
+    // Good
+    func New(){ ... }
+
+- If name collision on `import`, prefer to rename the most local or project-specific import. 
+
+* Errors
+
+- No In-Band Errors
+    // Lookup returns the value for key or "" if there is no mapping for key.
+    // BAD
+    func Lookup(key string) string
+ 
+    // Lookup returns the value for key or ok=false if there is no mapping for key.
+    // GOOD
+    func Lookup(key string) (value string, ok bool)
+
+- *Handle* every Error
+    // BAD
+    c, _ := new Client()
+ 
+    // GOOD
+    c, err := new Client()
+    if err != nil { ... }
+
+* Errors (continued)
+
+- Keep indentation to a minimal
+    // BAD
+    if err != nil {
+        // error handling
+    } else {
+        // normal code
+    }
+ 
+    // GOOD
+    if err != nil {
+        // error handling
+        return // or continue, etc.
+    }
+    // normal code
+
+* Initialisms
+
+Words in names that are initialisms or acronyms (e.g. "URL" or "NATO") have a consistent case
+
+    // BAD
+    var isurl bool
+    clientId := client.ID()
+    func servehttp() { ... }
+ 
+    // GOOD
+    var isURL bool
+    clientID := client.ID()
+    func serveHTTP() { ... }
+
+* Globals
+
+Generally, global states are bad.
+They limit testability of packages.
+
+    // BAD
+    const baseURL = "https://myapp.prod.mu"
+    type Fetcher struct { ... }
+    func(f Fetcher) Resource(url string) (*Resource, err) {
+        // use `baseURL` to fetch resource at `url`
+    }
+ 
+    // GOOD
+    type Fetcher struct { 
+        baseURL string 
+    }
+    func(f Fetcher) Resource(url string) (*Resource, err) {
+        // use `f.baseURL` to fetch resource at `url`
+    }
+
+* Line Length
+
+There's no hard-limit but there's a thing as uncomfortably long.
+
+- Do not add line breaks just to shorten a line. Be wise!
+
+    // BAD
+    // This is a very long commment and it makes sense to shorten it at some 
+    // point but when do we shorten it?
+ 
+    // BETTER
+    // This is a very long commment and it makes sense to shorten it at some point 
+    // but when do we shorten it?
+
+- Sometimes it is wiser to be concise,
+
+    // GOOD
+    // This is comment is very long and should be shortened
+
+- Or simply change the names or the semantics for better results.
+
+* Mixed Caps
+
+Either you PascalCase (exported) or you camelCase (unexported).
+
+    // BAD
+    var is_url bool
+    const (
+        max_url_len = 32
+        MIN_URL_LEN = 5
+    )
+    func Fetch_Resource() { ... }
+ 
+    // GOOD
+    var isURL bool
+    const (
+        MinURLLen = 5       // exported
+        maxURLLen = 32      // unexported
+    )
+    func FetchResource() { ... }
+
+Even if it breaks conventions in other languages.
+
+* Named Result Parameters
+
+Useful for documentation purposes when two or more parameters of the same type is returned
+
+    // BAD
+    func (f *Foo) Location() (float64, float64, error)
+
+    // GOOD
+    // Location returns f's latitude and longitude.
+    // Negative values mean south and west, respectively.
+    func (f *Foo) Location() (lat, long float64, err error)
+
+Should not be used just to save lines of code in the function's body.
+
+* Identifier names
+
+Basic rules: 
+
+- Keep the name *short* and *simple*.
+- The *further* from its declaration that a name is used, the more *descriptive* the name must be. 
+- For a method receiver, one or two letters is sufficient. 
+- Common variables such as loop indices and readers can be a single letter (i, r). 
+- More unusual things and global variables need more descriptive names.
+- Do not prefix *Get* for getters; only prefix *Set* for setters.
+- Error values should be prefixed with *Err*.
+
+* Receiver type
+
+- If the receiver is a map, func or chan, don't use a pointer to them
+- If the method needs to *mutate* the receiver, the receiver must be a pointer.
+- If the receiver is a struct that contains a sync.Mutex or similar *synchronizing* *field*, the receiver must be a pointer to avoid copying.
+- If the receiver is a large struct or array, a pointer receiver is more *efficient*.
+- If the receiver is a struct, array or slice and any of its elements is a pointer to something that might be mutating, prefer a pointer receiver; *intention* more clear to the reader.
+- If the receiver is a small array or struct that is naturally a value type (for instance, something like the time.Time type), with no mutable fields and no pointers, or is just a simple basic type such as int or string, a value receiver makes sense.
+- If for performance reason only, *profile* first!
+- Finally, when in *doubt*, use a pointer receiver.
+
+* Switch
+
+Idiomatic to re-write a long *if-elseif-else* chain as a *switch*.
+
+    switch {
+    case '0' <= c && c <= '9':
+        return c - '0'
+    case 'a' <= c && c <= 'f':
+        return c - 'a' + 10
+    case 'A' <= c && c <= 'F':
+        return c - 'A' + 10
+    }
+ 
+    switch c {
+    case ' ', '?', '&', '=', '#', '+', '%':
+        return true
+    }
+ 
+    switch {
+    case p.Code == "":
+        return errors.New("code can't be empty")
+    case p.Name == "":
+        return errors.New("name can't be empty")
+    }
+
+* External Packages
+
+- New packages should be vet'd properly before adding to a project. (i.e proper license, maintained, popular, tested, code quality)
+- Packages which need to be updated needs to be tested for breaking changes in API.
+- Packages should be hosted on proper source version platform. (e.g Github, Gitlab)
+- Tools like *golicense* should be used to regularly scan dependencies' license.
+
+* Testing
+
+Packages should be tested with proper coverage (70+%).
+However, test coverage does not guarantee good testing practices.
+ 
+- Tests should use *testify* package.
+- Tests' package name should be suffixed with "_test".
+- Tests should be properly *documented*.
+- Where setup is needed, test *suites* should be used. 
+- For complex input and/or output, test *fixtures* should be used.
+- Tests should use *table-driven* testing where necessary.
+- Tests should fail with proper messages about what case failed and what was *got* compared to what was *expected*.
+- Build tools should run the tests and stop when the tests fail.
+
+* Benchmarking
+
+For I/O intensive or performance critical tasks, benchmarking should be done. 
+
+- Benchmarking is pointless unless the results are properly analysed and compared. *Benchcmp* should be used to compare benchmark results.
+- In some cases, the benchmark *timer* must be controlled manually for accurate results. (e.g *b.StartTimer()*, *b.StopTimer()* and *b.ResetTimer()*)
+
+* Profiling
+
+One way of correct bottlenecks found using benchmarking is profiling.
+
+Three popular types of profiling: Memory, CPU and Goroutine.
+
+- CPU profile determines where a program spends its time while actively consuming CPU cycles (as opposed to while sleeping or waiting for I/O).
+- Memory (Heap) profile reports memory allocation samples; used to monitor current and historical memory usage, and to check for memory leaks.
+- Goroutine profile reports the stack traces of all current goroutines.
+
+* References
+
+.link https://golang.org/doc/effective_go.html [Go official] Effective Go
+.link https://golang.org/doc/diagnostics.html [Go official] Diagnostics
+.link https://github.com/golang/go/wiki/CodeReviewComments [Go wiki] Code Review Comments
+.link https://dave.cheney.net/category/golang [Blog] Dave Cheney
+.link http://www.call-with-current-continuation.org/rants/rants.html [List] Programming-related rants
