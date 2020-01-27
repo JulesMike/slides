@@ -168,6 +168,10 @@ A happy `go vet` is a happy developer!
 
 * Comment
 
+    Good code has lots of comments, bad code requires lots of comments.
+
+    -Dave Thomas and Andrew Hunt(The Pragmatic Programmer)
+
 - Comment should be written in full sentences even if it feels redundant. 
     // Request represents a request to run a command.
     type Request struct { ...
@@ -178,6 +182,8 @@ A happy `go vet` is a happy developer!
  
     // GOOD
     // Request ...
+
+* Comment (continued)
 
 - Comment tags
     // List of comment tags
