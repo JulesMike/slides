@@ -215,6 +215,24 @@ At the end of the day, source code comments serves as documentation on `godoc`.
 
 - If name collision on `import`, prefer to rename the most local or project-specific import. 
 
+* Declaration style
+
+Go has at least six different ways to declare a variable.
+
+- When declaring a variable without initialisation, use the var syntax.
+- When declaring and explicitly initialising a variable, use :=.
+- Avoid the `new` keyword.
+
+    // BAD
+    thing := new(Thing)
+ 
+    // GOOD
+    thing := &Thing{}
+
+Gotcha:
+
+- Make tricky declarations obvious.
+
 * Errors
 
 - No In-Band Errors
